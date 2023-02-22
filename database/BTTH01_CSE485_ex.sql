@@ -1,6 +1,6 @@
 -- Câu a
 
-SELECT * FROM baiviet WHERE ma_tloai = 2;
+SELECT * FROM baiviet WHERE ma_tloai = (SELECT ma_tloai FROM theloai where ten_tloai = 'Nhạc trữ tình');
 
 -- Câu b
 
