@@ -1,5 +1,22 @@
 <?php
     require "../includes/database-connection.php";
+
+    if(isset($_GET["id"])){
+        $id = $_GET["id"];
+    }
+        $sql = "SELECT * FROM tacgia WHERE ma_tgia = $id";
+        $qr = mysqli_query($conn,$sql);
+
+    if(isset($_POST["Edit"])){
+        $tg_ten = $_POST["txtAuName"];
+
+        if($tg_ten ==""){echo "Vui lòng nhập tên tác giả";}
+        if($tg_ten!=""){
+            $sql = "UPDATE tacgia SET ten_tgia = '$tg_ten' WHERE ma_tgia = $id ";
+            $qr = mysqli_query($conn,$sql);
+            header("location: author.php");
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -16,48 +33,30 @@
 <body>
 <?php require '../includes/admin_header.php';
     
-?>
+    ?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_category.php" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tên thể loại</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $sql = "SELECT * FROM theloai";
-                        $qr = mysqli_query($conn,$sql);
-                        while($row = mysqli_fetch_array($qr)){
-                    ?>
-                    <tr>
-                        <th scope="row"><?= $row['ma_tloai']; ?></th>
-                        <td><?= $row['ten_tloai']; ?></td><br>
-                        <td>
-                            <a href="edit_category.php?id=<?= $row['ma_tloai'];?>"><i class = "fa-solid fa-pen-to-square"></i></a>
-                        </td>
-                        <td>
-                            <a href="delete_category.php?id=<?= $row['ma_tloai'];?>"><i class = " fa-solid fa-trash "></i></a>
-                        </td>
-                    </tr>
-                    <?php
-                        };
-                    ?>
-                    </tbody>
-                </table>
+                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin </h3>
+                <form action="" method="post">
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên tác giả</span>
+                        <input type="text" class="form-control" name="txtAuName"  value="">
+                    </div>
+
+                    <div class="form-group  float-end ">
+                        <input type="submit" value="Lưu lại" class="btn btn-success" name="Edit">
+                        <a href="category.php" class="btn btn-warning ">Quay lại</a>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
     <?php require '../includes/admin_footer.php';
     
-    ?>   
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>
