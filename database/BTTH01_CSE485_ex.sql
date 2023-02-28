@@ -43,20 +43,3 @@ FROM tacgia, baiviet, theloai
 WHERE tacgia.ma_tgia = baiviet.ma_tgia AND baiviet.ma_tloai = theloai.ma_tloai
 
 SELECT * FROM vw_Music
-
-/* Câu j Tạo 1 thủ tục có tên sp_DSBaiViet với tham số truyền vào là Tên thể loại và trả về danh sách
-Bài viết của thể loại đó. Nếu thể loại không tồn tại thì hiển thị thông báo lỗi.*/
-CREATE PROCEDURE sp_DSBaiViet (IN input_ten_danhmuc VARCHAR(255))
-BEGIN
-DECLARE danhmuc_id INT;
-
-IF danhmuc_id IS NULL THEN
-SELECT 'Thể loại không tồn tại' AS message;
-ELSE
-
-SELECT * FROM baiviet WHERE ma_tloai = danhmuc_id;
-END IF;
-END
-
---Thực thi thủ tục
-CALL sp_DSBaiViet('Tên thể loại cần tìm');
