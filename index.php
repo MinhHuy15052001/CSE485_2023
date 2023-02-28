@@ -44,7 +44,7 @@
         // Bước 01: Kết nối tới DB Server
         require 'includes/database-connection.php';
         // Bước 02: Thực hiện truy vấn
-        $sql = "SELECT * FROM baiviet ORDER BY ngayviet DESC LIMIT 6";
+        $sql = "SELECT * FROM baiviet ";
         $result = mysqli_query($conn, $sql);
 
         // Bước 03: Xử lý kết quả trả về
@@ -56,7 +56,8 @@
                     <img src="images/songs/cayvagio.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="detail.php" class="text-decoration-none"><?= $row['ten_bhat']?></a>
+                            <a href="detail.php?id=<?= $row['ma_bviet'] ?>" class="text-decoration-none">
+                            <?= $row['tieude']?></a>
                         </h5>
                     </div>
                 </div>

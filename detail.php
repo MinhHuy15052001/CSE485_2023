@@ -1,3 +1,19 @@
+<?php
+        if(isset($_GET['id']))
+        $id = $_GET['id'];
+        // Bước 01: Kết nối tới DB Server
+
+        require 'includes/database-connection.php';
+        // Bước 02: Thực hiện truy vấn
+        $sql = "SELECT * FROM baiviet,theloai,tacgia WHERE baiviet.ma_tloai=theloai.ma_tloai 
+        AND baiviet.ma_tgia=tacgia.ma_tgia AND ma_bviet =?";
+        $stmt = $conn -> prepare($sql);
+        $stmt -> bind_param("i",$id);
+        $stmt ->execute();
+        $result = $stmt -> get_result();
+        $baiviet=$result->fetch_assoc();
+
+        ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,13 +63,13 @@
                     </div>
                     <div class="col-sm-8">
                         <h5 class="card-title mb-2">
-                            <a href="" class="text-decoration-none">Cây và gió</a>
+                            <a href="" class="text-decoration-none"><?= $baiviet['tieude']  ?></a>
                         </h5>
-                        <p class="card-text"><span class=" fw-bold">Bài hát: </span>Cây và gió</p>
-                        <p class="card-text"><span class=" fw-bold">Thể loại: </span>Nhạc trữ tình</p>
-                        <p class="card-text"><span class=" fw-bold">Tóm tắt: </span>Em và anh, hai đứa quen nhau thật tình cờ. Lời hát của anh từ bài hát “Cây và gió” đã làm tâm hồn em xao động. Nhưng sự thật phũ phàng rằng em chưa bao giờ nói cho anh biết những suy nghĩ tận sâu trong tim mình. Bởi vì em nhút nhát, em không dám đối mặt với thực tế khắc nghiệt, hay thực ra em không dám đối diện với chính mình.</p>
-                        <p class="card-text"><span class=" fw-bold">Nội dung: </span>Em và anh, hai đứa quen nhau thật tình cờ. Lời hát của anh từ bài hát “Cây và gió” đã làm tâm hồn em xao động. Nhưng sự thật phũ phàng rằng em chưa bao giờ nói cho anh biết những suy nghĩ tận sâu trong tim mình. Bởi vì em nhút nhát, em không dám đối mặt với thực tế khắc nghiệt, hay thực ra em không dám đối diện với chính mình.</p>
-                        <p class="card-text"><span class=" fw-bold">Tác giả: </span>Nguyễn Văn Giả</p>
+                        <p class="card-text"><span class=" fw-bold">Bài hát: </span><?= $baiviet['ten_bhat']  ?></p>
+                        <p class="card-text"><span class=" fw-bold">Thể loại: </span><?= $baiviet['ten_tloai']  ?></p>
+                        <p class="card-text"><span class=" fw-bold">Tóm tắt: </span><?= $baiviet['tomtat']  ?></p>
+                        <p class="card-text"><span class=" fw-bold">Nội dung: </span><?= $baiviet['noidung']  ?></p>
+                        <p class="card-text"><span class=" fw-bold">Tác giả: </span><?= $baiviet['ten_tgia']  ?></p>
 
                     </div>          
         </div>
