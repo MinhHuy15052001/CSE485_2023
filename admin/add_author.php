@@ -2,16 +2,16 @@
     require "../includes/database-connection.php";
 
     if(isset($_POST["add"])){
-        $tl_id = $_POST["txtCatID"];
-        $tl_ten = $_POST["txtCatName"];
+        $tg_id = $_POST["txtAuID"];
+        $tg_ten = $_POST["txtAuName"];
         
-        if($tl_id == ""){echo "Vui lòng nhập mã thể loại <br/>";}
-        if($tl_ten == ""){echo "Vui lòng nhập tên thể loại ";}
+        if($tg_id == ""){echo "Vui lòng nhập mã tác giả <br/>";}
+        if($tg_ten == ""){echo "Vui lòng nhập tên tác giả ";}
 
-        if($tl_id !="" && $tl_ten!=""){
-            $sql = "INSERT INTO theloai(ma_tloai,ten_tloai) VALUES ('$tl_id','$tl_ten')";
+        if($tg_id !="" && $tg_ten!=""){
+            $sql = "INSERT INTO tacgia(ma_tgia,ten_tgia) VALUES ('$tg_id','$tg_ten')";
             $qr = mysqli_query($conn,$sql);
-            header("location: category.php");
+            header("location: author.php");
         }
     }
 ?>
@@ -63,15 +63,15 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
+                <h3 class="text-center text-uppercase fw-bold">Thêm mới</h3>
                 <form action="" method="post">
                     <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatName">Mã thể loại</span>
-                        <input type="text" class="form-control" name="txtCatID" >
+                        <span class="input-group-text" id="lblCatName">Mã tác giả</span>
+                        <input type="text" class="form-control" name="txtAuID" >
                     </div>
                     <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatName">Tên thể loại</span>
-                        <input type="text" class="form-control" name="txtCatName" >
+                        <span class="input-group-text" id="lblCatName">Tên tác giả</span>
+                        <input type="text" class="form-control" name="txtAuName" >
                     </div>
 
                     <div class="form-group  float-end ">

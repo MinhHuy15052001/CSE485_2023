@@ -4,17 +4,17 @@
     if(isset($_GET["id"])){
         $id = $_GET["id"];
     }
-        $sql = "SELECT * FROM theloai WHERE ma_tloai = $id";
-        $qr = mysqli_query($conn,$sql); 
+        $sql = "SELECT * FROM baiviet WHERE ma_bviet = $id";
+        $qr = mysqli_query($conn,$sql);
 
     if(isset($_POST["Edit"])){
-        $tl_ten = $_POST["txtCatName"];
+        $bv_ten = $_POST["txtCatName"];
 
-        if($tl_ten ==""){echo "Vui lòng nhập tên thể loại";}
-        if($tl_ten!=""){
-            $sql = "UPDATE theloai SET ten_tloai = '$tl_ten' WHERE ma_tloai = $id ";
+        if($bv_ten ==""){echo "Vui lòng nhập tên bài viết";}
+        if($bv_ten!=""){
+            $sql = "UPDATE baiviet SET tieude = '$bv_ten' WHERE ma_bviet = $id ";
             $qr = mysqli_query($conn,$sql);
-            header("location: category.php");
+            header("location: article.php");
         }
     }
 ?>
@@ -31,25 +31,33 @@
     <link rel="stylesheet" href="css/style_login.css">
 </head>
 <body>
-<?php require '../includes/admin_header.php';
+<?php require '../includes/admin_footer.php';
     
     ?>
-    </header>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
-                <form action="" method="post">
-               
+                <form method="post" action="" >
 
                     <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatName">Tên thể loại</span>
-                        <input type="text" class="form-control" name="txtCatName" value = "">
+                        <span class="input-group-text" id="lblCatName">Tiêu đề</span>
+                        <input type="text" class="form-control" name="txtCatName" value = "<?php echo $rows['tieude'] ?>">
+                    </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên bài hát</span>
+                        <input type="text" class="form-control" name="txtCatName" value = "<?php echo $rows['ten_bhat'] ?>">
+                    </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tóm tắt</span>
+                        <input type="text" class="form-control" name="txtCatName" value = "<?php echo $rows['tomtat'] ?>">
                     </div>
 
                     <div class="form-group  float-end ">
-                        <input type="submit" value="Lưu lại" class="btn btn-success" name="Edit">
+                        <input type="submit" value="Lưu lại" class="btn btn-success" name = "Edit">
                         <a href="category.php" class="btn btn-warning ">Quay lại</a>
                     </div>
                 </form>
