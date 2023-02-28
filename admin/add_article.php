@@ -18,6 +18,11 @@
             header("location: article.php");
         }
     }
+    $sql = "SELECT * FROM tacgia";
+    $result = mysqli_query($conn,$sql);
+    $sql1 = "SELECT * FROM theloai";
+    $result1 = mysqli_query($conn,$sql1);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +57,34 @@
                         <span class="input-group-text" id="lblArName">Tiêu đề</span>
                         <input type="text" class="form-control" name="txtArName" value = "">
                     </div>
-
+                   
+                    <select class="form-select" aria-label="Default select example" name ="tgia">
+                     <option selected>Tác giả</option>
+                    <?php
+                        if(mysqli_num_rows($result) > 0){
+                            while($row = mysqli_fetch_assoc($result)){
+                    ?>
+                    
+                    <option value=<?= $row['ma_tgia'] ?>><?= $row['ten_tgia'] ?></option>
+                    <?php
+                        }
+                    }
+                    ?>
+                    </select>
+                    <br>    
+                    <select class="form-select" aria-label="Default select example" name ="tloai">
+                     <option selected>Thể loại</option>
+                    <?php
+                        if(mysqli_num_rows($result1) > 0){
+                            while($row1 = mysqli_fetch_assoc($result1)){
+                    ?>
+                   
+                    <option value=<?= $row1['ma_tloai'] ?>><?= $row1['ten_tloai'] ?></option>
+                    <?php
+                        }
+                    }
+                    ?>
+                    </select>
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblArSName">Tên bài hát</span>
                         <input type="text" class="form-control" name="txtArSName" value = "">
