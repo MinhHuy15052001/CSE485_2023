@@ -38,22 +38,22 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
+                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin bài viết</h3>
                 <form method="post" action="" >
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tiêu đề</span>
-                        <input type="text" class="form-control" name="txtCatName" value = "<?php echo $rows['tieude'] ?>">
+                        <input type="text" class="form-control" name="txtCatName" value = "">
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên bài hát</span>
-                        <input type="text" class="form-control" name="txtCatName" value = "<?php echo $rows['ten_bhat'] ?>">
+                        <input type="text" class="form-control" name="txtCatName" value = "">
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tóm tắt</span>
-                        <input type="text" class="form-control" name="txtCatName" value = "<?php echo $rows['tomtat'] ?>">
+                        <input type="text" class="form-control" name="txtCatName" value = "">
                     </div>
 
                     <div class="form-group  float-end ">
